@@ -26,7 +26,7 @@ def calculate_price_usd(df):
     """    
 
     # convert cad to usd
-    df['price_usd'] = df['price_cad'] * 0.8
+    df['price_usd'] = df['price_cad'] * 0.9
 
     return df
 
