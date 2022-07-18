@@ -1,0 +1,27 @@
+on: [push]
+
+name: AzureCLISample
+
+jobs:
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Azure Login
+      uses: Azure/login@v1.4.5
+      with:
+        # ClientId of the Azure Service principal created.
+        client-id: # optional
+        # TenantId of the Azure Service principal created.
+        tenant-id: 1aa51068-11a6-4bd2-8646-1fff31a30ffc
+        # Azure subscriptionId
+        subscription-id: "ef8e1d90-7e58-45fc-a7e5-e608efc32cf1"
+
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az account show
+          az storage -h
