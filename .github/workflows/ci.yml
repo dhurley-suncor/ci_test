@@ -4,11 +4,9 @@
 name: Python application
 
 on:
-  push:
-    branches: [ "test-cli" ]
   pull_request:
-    branches: [ "main" ]
-
+    branches: ["main"]
+    
 permissions:
   contents: read
 
