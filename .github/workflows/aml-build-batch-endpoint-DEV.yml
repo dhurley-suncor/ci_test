@@ -15,7 +15,7 @@ on:
 
 # Run the aml build and publish endpoint job for DEV
 jobs:
-  migrate-rebuild-publish:
+  build-publish-aml-endpoint:
     uses: dhurley-suncor/ci_test/.github/workflows/aml-build-batch-endpoint-BASE.yml@feature
     with:
       RESOURCEGROUP: iaasbxarmrgp003
