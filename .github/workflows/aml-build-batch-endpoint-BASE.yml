@@ -72,8 +72,8 @@ jobs:
       continue-on-error: false
     
     - name: build aml pipeline endpoint and publish
-      run: bash -x ../../../resources/aml_migration/cli/run-job.sh pipeline.yml
-      working-directory: src/AzureML_BatchAPI/EnhancedSearch_Pipeline
+      run: bash -x ../../Resources/AzureML/cli/run-job.sh pipeline.yml
+      working-directory: AzureML/TrainingPipeline
       
     - name: Remove IP of Github runner from storage account
       if: always()
