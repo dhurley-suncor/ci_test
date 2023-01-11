@@ -8,7 +8,7 @@ on:
   
   pull_request:
     branches:
-      - feature
+      - dev
     paths:
       - 'AzureML/TrainingPipeline/pipeline_build.py'
       - 'AzureML/TrainingPipeline/src/**'
