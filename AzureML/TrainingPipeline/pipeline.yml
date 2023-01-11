@@ -6,7 +6,7 @@ display_name: training-pipeline-build-publish
 experiment_name: training-pipeline-build-publish
 
 jobs:
-  pipeline_rebuild:
+  pipeline_build:
     type: command
     code: .
     environment: azureml:AML-batch-inference-env@latest
