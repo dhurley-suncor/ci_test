@@ -1,4 +1,4 @@
-""" Step 1 - prepare dataset for training """
+""" Step 1 - prepare dataset for training trigger workflow """
 
 ####################################################################################
 # IMPORTS
