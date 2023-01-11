@@ -71,13 +71,13 @@ jobs:
       working-directory: Resources/AzureML/cli
       continue-on-error: false
     
-    - name: build aml pipeline endpoint and publish
-      run: bash -x ../../Resources/AzureML/cli/run-job.sh pipeline.yml
-      working-directory: AzureML/TrainingPipeline
+#     - name: build aml pipeline endpoint and publish
+#       run: bash -x ../../Resources/AzureML/cli/run-job.sh pipeline.yml
+#       working-directory: AzureML/TrainingPipeline
       
     - name: Remove IP of Github runner from storage account
       if: always()
-      run: bash whitelist-ip-remove.sh 
+      run: bash whitelist-ip-remove.sh ${{ inputs.DEFAULTSTORAGE }} ${{ inputs.SUBSCRIPTION }} ${{ inputs.RESOURCEGROUP }} ${{ inputs.REPOPATH }}
       working-directory: Resources/AzureML/cli
       continue-on-error: false
       
