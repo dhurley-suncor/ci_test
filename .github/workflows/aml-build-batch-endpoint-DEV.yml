@@ -1,0 +1,31 @@
+name: AML Build Batch Pipeline Endpoint DEV
+
+# Controls when the workflow will run
+on:
+
+  # Allows you to run this workflow manually from the Actions tab.  This will only work for the default branch.
+  workflow_dispatch:
+  
+  push:
+    branches:
+      - dev
+    paths:
+      - 'src/AzureML_BatchAPI/DigitalToolboxTalkHazards_Pipeline/src/**'
+      - 'src/AzureML_BatchAPI/DigitalToolboxTalkIncident_Pipeline/src/**'
+      - 'src/AzureML_BatchAPI/EnhancedSearch_Pipeline/src/**'
+
+# Run the aml build and publish endpoint job for DEV
+jobs:
+  migrate-rebuild-publish:
+    uses: SEAdvancedAnalyticsOrg/HazardsAndControls-IAA/.github/workflows/aml_rebuild_batch_endpoint_BASE.yml@dev
+    with:
+      RESOURCEGROUP: iaadevarmrgp002
+      LOCATION: westus2
+      WORKSPACE: iaadevarmmlwuw2002
+      DEFAULTCLUSTER: iaadevarmmlwuw2002/computes/cpu-cluster
+      ADGROUP: SG-IAA-DEV-AML-MI
+      DEFAULTSTORAGE: iaadevarmstauw2002
+      SUBSCRIPTION: SuncorEnergyIT-DEV
+      REPOPATH: dev
+    secrets: 
+      azure-sp-credential: ${{ secrets.AML_CRED_IAADEV2002 }}
