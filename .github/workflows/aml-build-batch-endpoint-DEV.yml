@@ -6,9 +6,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab.  This will only work for the default branch.
   workflow_dispatch:
   
-  push:
+  pull_request:
     branches:
-      - dev
+      - feature
     paths:
       - 'AzureML/TrainingPipeline/pipeline_build.py'
       - 'AzureML/TrainingPipeline/src/**'
@@ -25,6 +25,6 @@ jobs:
       ADGROUP: SG-IAA-SBX-AML-MI
       DEFAULTSTORAGE: iaasbxarmstauw2031
       SUBSCRIPTION: SuncorABOSandbox
-      REPOPATH: dev
+      REPOPATH: feature
     secrets: 
       azure-sp-credential: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
