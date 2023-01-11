@@ -63,12 +63,12 @@ jobs:
 
     - name: Whitelist the IP address of the Github Runner
       run: bash whitelist-ip-add.sh ${{ inputs.DEFAULTSTORAGE }} ${{ inputs.SUBSCRIPTION }} ${{ inputs.RESOURCEGROUP }} ${{ inputs.REPOPATH }}
-      working-directory: resources/aml_migration/cli
+      working-directory: Resources/AzureML/cli
       continue-on-error: false
         
     - name: setup az ml cli
       run: bash setup.sh ${{ inputs.RESOURCEGROUP }} ${{ inputs.LOCATION }} ${{ inputs.WORKSPACE }}
-      working-directory: resources/aml_migration/cli
+      working-directory: Resources/AzureML/cli
       continue-on-error: false
     
     - name: build aml pipeline endpoint and publish
@@ -78,6 +78,6 @@ jobs:
     - name: Remove IP of Github runner from storage account
       if: always()
       run: bash whitelist-ip-remove.sh 
-      working-directory: resources/aml_migration/cli
+      working-directory: Resources/AzureML/cli
       continue-on-error: false
       
