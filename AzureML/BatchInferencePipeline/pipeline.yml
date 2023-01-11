@@ -1,15 +1,15 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 type: pipeline
 
-description: Build and publish batch pipeline endpoint
-display_name: batch-inference-pipeline-build-publish
-experiment_name: batch-inference-pipeline-build-publish
+description: Build and publish training pipeline endpoint
+display_name: training-pipeline-build-publish
+experiment_name: training-pipeline-build-publish
 
 jobs:
   pipeline_rebuild:
     type: command
     code: .
-    environment: azureml:AzureML-custom-env@latest
+    environment: azureml:AML-batch-inference-env@latest
     compute: azureml:cpu-cluster
     command: >-
       python pipeline_build.py

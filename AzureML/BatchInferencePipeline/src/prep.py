@@ -4,7 +4,6 @@
 # IMPORTS
 ####################################################################################
 import argparse
-
 from azureml.core import Run
 
 ####################################################################################
@@ -17,8 +16,9 @@ def main(args):
         args: pipeline attributes [object]
 
     """
+    run = Run.get_context()
 
-    input_data = run.input_datasets['input_data1'].to_pandas_dataframe()
+    # your code here
 
 ####################################################################################
 # FUNCTIONS
@@ -33,7 +33,8 @@ def parse_args():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--input-data", type=str, dest='dest_input_data1', help='raw dataset1')
+    parser.add_argument("--input-data", type=str, dest='input-data', required=True)
+    parser.add_argument("--shared-dir", type=str, dest='shared-dir', required=True)
 
     args = parser.parse_args()
 
@@ -44,4 +45,6 @@ def parse_args():
 ####################################################################################
 if __name__ == "__main__":
     
-    run = Run.get_context()
+    args = parse_args()
+
+    main(args)
