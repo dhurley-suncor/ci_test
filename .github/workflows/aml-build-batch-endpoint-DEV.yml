@@ -9,9 +9,9 @@ on:
   pull_request:
     branches:
       - dev
-    paths:
-      - 'AzureML/TrainingPipeline/pipeline_build.py'
-      - 'AzureML/TrainingPipeline/src/**'
+#     paths:
+#       - 'AzureML/TrainingPipeline/pipeline_build.py'
+#       - 'AzureML/TrainingPipeline/src/**'
 
 # Run the aml build and publish endpoint job for DEV
 jobs:
