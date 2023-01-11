@@ -16,7 +16,7 @@ on:
 # Run the aml build and publish endpoint job for DEV
 jobs:
   migrate-rebuild-publish:
-    uses: SEAdvancedAnalyticsOrg/HazardsAndControls-IAA/.github/workflows/aml-build-batch-endpoint-BASE.yml@dev
+    uses: SEAdvancedAnalyticsOrg/HazardsAndControls-IAA/.github/workflows/aml-build-batch-endpoint-BASE.yml@feature
     with:
       RESOURCEGROUP: iaasbxarmrgp003
       LOCATION: westus2
