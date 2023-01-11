@@ -1,4 +1,4 @@
-""" Step 2 - conduct model training """
+""" Step 2 - conduct model training trigger workflow """
 
 ####################################################################################
 # IMPORTS
