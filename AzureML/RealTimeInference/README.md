@@ -1,4 +1,4 @@
 # EXAMPLE FLASK APP FOR MODEL INFERENCE
 
 trigger1
-new
+new test
