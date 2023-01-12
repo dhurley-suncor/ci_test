@@ -1,4 +1,4 @@
-name: AML Build Batch Pipeline Endpoint DEV
+name: AzureML Build Batch Pipeline Endpoint DEV
 
 # Controls when the workflow will run
 on:
@@ -13,7 +13,7 @@ on:
       - 'AzureML/TrainingPipeline/pipeline_build.py'
       - 'AzureML/TrainingPipeline/src/**'
 
-# Run the aml build and publish endpoint job for DEV
+# Run the aml-build-batch-endpoint-BASE for DEV
 jobs:
   build-publish-aml-endpoint:
     uses: ./.github/workflows/aml-build-batch-endpoint-BASE.yml
