@@ -28,6 +28,9 @@ on:
       jfrog-password:
         required: true
         description: JFrog password
+      azure-sp-credential:
+        required: true
+        description: azure login
 jobs:
   build:
     runs-on: ubuntu-latest
