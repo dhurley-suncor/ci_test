@@ -59,6 +59,7 @@ jobs:
         push: true
         tags: ${{ inputs.JFROGREGISTRY }}/${{ inputs.IMAGENAME }}:${{ github.sha }}
         file: ./AzureML/RealTimeInference/Dockerfile
+        context: ./AzureML/RealTimeInference/
 # deploy:
 #     runs-on: ubuntu-latest
 #     needs: build
