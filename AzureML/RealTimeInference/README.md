@@ -1,7 +1,3 @@
 # EXAMPLE FLASK APP FOR MODEL INFERENCE
 
 
-trigger
-test
-
-check
