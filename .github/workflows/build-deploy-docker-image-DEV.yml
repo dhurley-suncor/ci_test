@@ -14,7 +14,7 @@ on:
       
 # Build and deploy docker image to Azure webapp
 jobs:
-  migrate-rebuild-publish:
+  build-deploy-docker-image:
     uses: ./.github/workflows/build-deploy-docker-image-BASE.yml
     with:
       JFROG_REGISTRY: suncorenergy-aap-iaa-docker-dev-local.jfrog.io
