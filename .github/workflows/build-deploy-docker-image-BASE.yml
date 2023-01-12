@@ -5,10 +5,10 @@ on:
   # Reusable workflow.
   workflow_call:
     inputs:
-      JFROG_REGISTRY:
+      JFROGREGISTRY:
         required: true
         type: string
-        description: JFrog registry url
+        description: jfrog registry url
       REPOPATH:
         required: true
         type: string
@@ -16,11 +16,11 @@ on:
       WEBAPP:
         required: true
         type: string
-        description: Azure webapp name 
-      IMAGE_NAME:
+        description: AzureML webapp name   
+      IMAGENAME:
         required: true
         type: string
-        description: Name of image in jfrog registry
+        description: Name of Docker container in jfrog
     secrets:
       jfrog-username:
         required: true
