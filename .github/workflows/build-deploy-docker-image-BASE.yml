@@ -59,20 +59,20 @@ jobs:
         push: true
         tags: ${{ inputs.JFROG_REGISTRY }}/${{ inputs.IMAGE_NAME }}:${{ github.sha }}
         file: ./AzureML/RealTimeInference/Dockerfile
-deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+# deploy:
+#     runs-on: ubuntu-latest
+#     needs: build
+#     environment:
+#       name: 'production'
+#       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-    steps:
-    - name: Deploy Docker container to webapp
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ inputs.WEBAPP }}
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_10b09be6cd2c41289649d15ef8a8c19c }}
-        images: '${{ inputs.JFROG_REGISTRY }}/${{ inputs.IMAGE_NAME }}:${{ github.sha }}'
+#     steps:
+#     - name: Deploy Docker container to webapp
+#       id: deploy-to-webapp
+#       uses: azure/webapps-deploy@v2
+#       with:
+#         app-name: ${{ inputs.WEBAPP }}
+#         slot-name: 'production'
+#         publish-profile: ${{ secrets.AzureAppService_PublishProfile_10b09be6cd2c41289649d15ef8a8c19c }}
+#         images: '${{ inputs.JFROG_REGISTRY }}/${{ inputs.IMAGE_NAME }}:${{ github.sha }}'
         
