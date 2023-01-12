@@ -17,10 +17,10 @@ jobs:
   build-deploy-docker-image:
     uses: ./.github/workflows/build-deploy-docker-image-BASE.yml
     with:
-      JFROG_REGISTRY: suncorenergy-aap-iaa-docker-dev-local.jfrog.io
+      JFROGREGISTRY: suncorenergy-aap-iaa-docker-dev-local.jfrog.io
       REPOPATH: dev
       WEBAPP: iaasbxarmwebuw2031
-      IMAGE_NAME: iaasbxarmwebuw2031
+      IMAGENAME: iaasbxarmwebuw2031
     secrets: 
       jfrog-username: ${{ secrets.JFROG_NONPROD_USERNAME }}
       jfrog-password: ${{ secrets.JFROG_NONPROD_PASSWORD }}
