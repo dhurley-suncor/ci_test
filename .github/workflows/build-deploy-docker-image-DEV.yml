@@ -1,0 +1,27 @@
+name: Build and Deploy Docker Image to Azure WebApp DEV
+
+# Controls when the workflow will run
+on:
+
+  # Allows you to run this workflow manually from the Actions tab.  This will only work for the default branch.
+  workflow_dispatch:
+
+  push:
+    branches:
+      - dev
+    paths: 
+      - 'src/AzureML/RealTimeInference'
+      
+# Build and deploy docker image to Azure webapp
+jobs:
+  migrate-rebuild-publish:
+    uses: ./.github/workflows/build-deploy-docker-image-BASE.yml
+    with:
+      JFROG_REGISTRY: suncorenergy-aap-iaa-docker-dev-local.jfrog.io
+      REPOPATH: dev
+      WEBAPP: iaasbxarmwebuw2031
+      IMAGE_NAME: iaasbxarmwebuw2031
+    secrets: 
+      jfrog-username: ${{ secrets.JFROG_NONPROD_USERNAME }}
+      jfrog-password: ${{ secrets.JFROG_NONPROD_PASSWORD }}
+      
