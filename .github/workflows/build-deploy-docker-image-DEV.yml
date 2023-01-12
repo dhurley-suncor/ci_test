@@ -10,7 +10,7 @@ on:
     branches:
       - dev
     paths: 
-      - 'AzureML/RealTimeInference'
+      - 'AzureML/RealTimeInference/**'
       
 # Build and deploy docker image to Azure webapp
 jobs:
