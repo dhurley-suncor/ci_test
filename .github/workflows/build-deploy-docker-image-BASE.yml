@@ -49,7 +49,7 @@ jobs:
     - name: Login to jfrog
       uses: docker/login-action@v1
       with:
-        registry: https://${{ JFROG_REGISTRY }}
+        registry: https://${{ inputs.JFROGREGISTRY }}
         username: ${{ secrets.jfrog-username }}
         password: ${{ secrets.jfrog-password }}
       
@@ -57,7 +57,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ${{ inputs.JFROG_REGISTRY }}/${{ inputs.IMAGE_NAME }}:${{ github.sha }}
+        tags: ${{ inputs.JFROGREGISTRY }}/${{ inputs.IMAGENAME }}:${{ github.sha }}
         file: ./AzureML/RealTimeInference/Dockerfile
 # deploy:
 #     runs-on: ubuntu-latest
@@ -74,5 +74,5 @@ jobs:
 #         app-name: ${{ inputs.WEBAPP }}
 #         slot-name: 'production'
 #         publish-profile: ${{ secrets.AzureAppService_PublishProfile_10b09be6cd2c41289649d15ef8a8c19c }}
-#         images: '${{ inputs.JFROG_REGISTRY }}/${{ inputs.IMAGE_NAME }}:${{ github.sha }}'
+#         images: '${{ inputs.JFROGREGISTRY }}/${{ inputs.IMAGENAME }}:${{ github.sha }}'
         
