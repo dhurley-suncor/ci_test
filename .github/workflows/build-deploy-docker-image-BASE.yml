@@ -30,7 +30,7 @@ on:
         description: JFrog password
       azure-sp-credential:
         required: true
-        description: azure login
+        description: Azure service principal credential
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -45,11 +45,6 @@ jobs:
       uses: actions/checkout@v3 
       with:
         ref: ${{ inputs.REPOPATH }}
-        
-    - name: Login to Azure CLI
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.azure-sp-credential }}
         
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1  
@@ -76,6 +71,7 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+    # received failure when not logged in so added
     - name: Login to Azure CLI
       uses: azure/login@v1
       with:
