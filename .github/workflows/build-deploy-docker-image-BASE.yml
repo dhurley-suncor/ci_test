@@ -43,6 +43,11 @@ jobs:
       with:
         ref: ${{ inputs.REPOPATH }}
         
+    - name: Login to Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.azure-sp-credential }}
+        
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1  
       
