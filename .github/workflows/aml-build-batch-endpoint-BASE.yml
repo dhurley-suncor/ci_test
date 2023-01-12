@@ -1,4 +1,4 @@
-name: AML Build Batch Pipeline Endpoint BASE
+name: AzureML Build Batch Pipeline Endpoint BASE
 
 # Controls when the workflow will run
 on:
@@ -16,66 +16,66 @@ on:
       WORKSPACE:
         required: true
         type: string
-        description: The name of the Azure ML Workspace   
+        description: The name of the AzureML Workspace   
       DEFAULTCLUSTER:
         required: true
         type: string
-        description: The defualt cluster path and name to run migration pipeline
+        description: The defualt compute cluster path
       ADGROUP:
         required: true
         type: string
-        description: AD group of the Azure ML Workspace 
+        description: Active Directory group of the AzureML Workspace 
       DEFAULTSTORAGE:
         required: true
         type: string
-        description: Default Azure ML Storage name
+        description: Default AzureML Storage name
       SUBSCRIPTION:
         required: true
         type: string
-        description: Subscription of the ADGROUP
+        description: Subscription of the Active Directory Group
       REPOPATH:
         required: true
         type: string
-        description: Branch to checkout
+        description: Branch to Checkout
     secrets:
       azure-sp-credential:
         required: true
-        description: The service principal credential
+        description: AzureML Service Principal Credential
 jobs:
   build-publish-aml-endpoint:
     runs-on: ubuntu-latest
     steps:
     
-    - name: Grab the branch for the workflow
+    - name: Grab the Branch for the Workflow
       run: |
           echo Github reference name $GITHUB_REF_NAME
           echo Github reference name $GITHUB_REF
           
-    - name: check out repo
+    - name: Checkout Branch
       uses: actions/checkout@v3
       with:
         ref: ${{ inputs.REPOPATH }}
 
-    - name: azure login
+    - name: Login to Azure CLI
       uses: azure/login@v1
       with:
         creds: ${{ secrets.azure-sp-credential }}
 
-    - name: Whitelist the IP address of the Github Runner
+    - name: Whitelist the IP Address of the Github Runner
       run: bash whitelist-ip-add.sh ${{ inputs.DEFAULTSTORAGE }} ${{ inputs.SUBSCRIPTION }} ${{ inputs.RESOURCEGROUP }} ${{ inputs.REPOPATH }}
       working-directory: Resources/AzureML/cli
       continue-on-error: false
         
-    - name: setup az ml cli
+    - name: Setup AZ ML CLI Extension and Default Workspace
       run: bash setup.sh ${{ inputs.RESOURCEGROUP }} ${{ inputs.LOCATION }} ${{ inputs.WORKSPACE }}
       working-directory: Resources/AzureML/cli
       continue-on-error: false
     
-    - name: build aml pipeline endpoint and publish
+    - name: Build AzureML Pipeline and Publish Endpoint
       run: bash -x ../../Resources/AzureML/cli/run-job.sh pipeline.yml
       working-directory: AzureML/TrainingPipeline
       
-    - name: Remove IP of Github runner from storage account
+    - name: Remove IP of Github Runner from Storage Account
       if: always()
       run: bash whitelist-ip-remove.sh ${{ inputs.DEFAULTSTORAGE }} ${{ inputs.SUBSCRIPTION }} ${{ inputs.RESOURCEGROUP }} ${{ inputs.REPOPATH }}
       working-directory: Resources/AzureML/cli
