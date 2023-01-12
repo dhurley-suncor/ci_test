@@ -24,4 +24,4 @@ jobs:
     secrets: 
       jfrog-username: ${{ secrets.JFROG_NONPROD_USERNAME }}
       jfrog-password: ${{ secrets.JFROG_NONPROD_PASSWORD }}
-      azure-sp-cred: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
+      azure-sp-credential: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
