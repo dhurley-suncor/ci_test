@@ -1,3 +1,3 @@
 # EXAMPLE FLASK APP FOR MODEL INFERENCE
 
-### Trigger
+### Trigge
