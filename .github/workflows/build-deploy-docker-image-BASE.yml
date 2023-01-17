@@ -9,10 +9,6 @@ on:
         required: true
         type: string
         description: jfrog registry url
-      REPOPATH:
-        required: true
-        type: string
-        description: Branch to checkout
       WEBAPP:
         required: true
         type: string
@@ -43,8 +39,6 @@ jobs:
           
     - name: Check out branch
       uses: actions/checkout@v3 
-      with:
-        ref: ${{ inputs.REPOPATH }}
         
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1  
