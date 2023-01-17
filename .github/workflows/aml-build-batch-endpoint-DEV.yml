@@ -23,6 +23,5 @@ jobs:
       WORKSPACE: iaasbxarmmlwuw2033
       DEFAULTSTORAGE: iaasbxarmstauw2031
       SUBSCRIPTION: SuncorABOSandbox
-      REPOPATH: dev
     secrets: 
       azure-sp-credential: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
