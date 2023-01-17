@@ -4,6 +4,8 @@ import pickle
 
 app = Flask(__name__)
 
+# trigger workflow
+
 linear_model = pickle.load(open('model.pkl', 'rb'))
 
 @app.route('/predict', methods=['POST'])
