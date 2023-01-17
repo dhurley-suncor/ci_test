@@ -18,7 +18,6 @@ jobs:
     uses: ./.github/workflows/build-deploy-docker-image-BASE.yml
     with:
       JFROGREGISTRY: suncorenergy-aap-iaa-docker-dev-local.jfrog.io
-      REPOPATH: dev
       WEBAPP: iaasbxarmwebuw2031
       IMAGENAME: iaasbxarmwebuw2031
     secrets: 

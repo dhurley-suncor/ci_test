@@ -21,10 +21,7 @@ jobs:
       RESOURCEGROUP: iaasbxarmrgp003
       LOCATION: westus2
       WORKSPACE: iaasbxarmmlwuw2033
-      DEFAULTCLUSTER: iaasbxarmmlwuw2033/computes/cpu-cluster
-      ADGROUP: SG-IAA-SBX-AML-MI
       DEFAULTSTORAGE: iaasbxarmstauw2031
       SUBSCRIPTION: SuncorABOSandbox
-      REPOPATH: dev
     secrets: 
       azure-sp-credential: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
