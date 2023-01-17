@@ -17,14 +17,6 @@ on:
         required: true
         type: string
         description: The name of the AzureML Workspace   
-      DEFAULTCLUSTER:
-        required: true
-        type: string
-        description: The defualt compute cluster path
-      ADGROUP:
-        required: true
-        type: string
-        description: Active Directory group of the AzureML Workspace 
       DEFAULTSTORAGE:
         required: true
         type: string
