@@ -19,8 +19,3 @@ def predict():
 
   prediction = linear_model.predict(value_to_predict)
   prediction = str(prediction[0][0])
-
-@app.route('/info')
-def info():
-
-  return "This is some information"
