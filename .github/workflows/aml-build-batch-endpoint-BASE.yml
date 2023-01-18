@@ -59,7 +59,7 @@ jobs:
     
     - name: Build AzureML Pipeline and Publish Endpoint
       run: bash -x ./Resources/AzureML/cli/run-job.sh pipeline.yml
-      working-directory: .
+      working-directory: ./AzureML/TrainingPipeline
       
     - name: Remove IP of Github Runner from Storage Account
       if: always()
