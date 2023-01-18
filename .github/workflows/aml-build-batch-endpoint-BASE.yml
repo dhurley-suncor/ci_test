@@ -48,7 +48,7 @@ jobs:
         creds: ${{ secrets.azure-credential }}
 
     - name: Whitelist the IP Address of the Github Runner
-      run: bash whitelist-ip-add.sh ${{ inputs.DEFAULTSTORAGE }} ${{ inputs.SUBSCRIPTION }} ${{ inputs.RESOURCEGROUP }} ${{ inputs.REPOPATH }}
+      run: bash whitelist-ip-add.sh ${{ inputs.DEFAULTSTORAGE }} ${{ inputs.SUBSCRIPTION }} ${{ inputs.RESOURCEGROUP }} $GITHUB_REF_NAME
       working-directory: ./Resources/AzureML/cli
       continue-on-error: false
         
@@ -63,7 +63,7 @@ jobs:
       
     - name: Remove IP of Github Runner from Storage Account
       if: always()
-      run: bash whitelist-ip-remove.sh ${{ inputs.DEFAULTSTORAGE }} ${{ inputs.SUBSCRIPTION }} ${{ inputs.RESOURCEGROUP }} ${{ inputs.REPOPATH }}
+      run: bash whitelist-ip-remove.sh ${{ inputs.DEFAULTSTORAGE }} ${{ inputs.SUBSCRIPTION }} ${{ inputs.RESOURCEGROUP }} $GITHUB_REF_NAME
       working-directory: ./Resources/AzureML/cli
       continue-on-error: false
       
