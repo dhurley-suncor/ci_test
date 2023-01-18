@@ -24,4 +24,4 @@ jobs:
       DEFAULTSTORAGE: iaasbxarmstauw2031
       SUBSCRIPTION: SuncorABOSandbox
     secrets: 
-      azure-credential: ${{ secrets.AZURE_CREDENTIALS }}
+      azure-credential: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
