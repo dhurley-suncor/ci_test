@@ -1,4 +1,4 @@
-name: Build and Deploy Docker Image to Azure WebApp DEV
+name: DEV - Build/Deploy Docker Azure Webapp
 
 # Controls when the workflow will run
 on:
@@ -23,4 +23,4 @@ jobs:
     secrets: 
       jfrog-username: ${{ secrets.JFROG_NONPROD_USERNAME }}
       jfrog-password: ${{ secrets.JFROG_NONPROD_PASSWORD }}
-      azure-sp-credential: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
+      azure-credential: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
