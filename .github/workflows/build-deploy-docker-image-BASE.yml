@@ -1,4 +1,4 @@
-name: Build and Deploy Docker Image to Azure WebApp BASE
+name: BASE - Build/Deploy Docker Azure Webapp
 
 # Controls when the workflow will run
 on:
@@ -24,9 +24,9 @@ on:
       jfrog-password:
         required: true
         description: JFrog password
-      azure-sp-credential:
+      azure-credential:
         required: true
-        description: Azure service principal credential
+        description: Azure credential
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
     - name: Login to Azure CLI
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.azure-sp-credential }}
+        creds: ${{ secrets.azure-credential }}
         
     - name: Deploy Docker container to webapp
       id: deploy-to-webapp
