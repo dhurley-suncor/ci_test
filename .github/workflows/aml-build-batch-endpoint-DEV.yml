@@ -1,4 +1,4 @@
-name: AzureML Build Batch Pipeline Endpoint DEV
+name: DEV - Build/Publish AML Batch Endpoint
 
 # Controls when the workflow will run
 on:
@@ -24,4 +24,4 @@ jobs:
       DEFAULTSTORAGE: iaasbxarmstauw2031
       SUBSCRIPTION: SuncorABOSandbox
     secrets: 
-      azure-sp-credential: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
+      azure-credential: ${{ secrets.AZURE_CREDENTIALS }}
