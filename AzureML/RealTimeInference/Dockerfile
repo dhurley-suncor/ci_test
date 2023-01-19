@@ -4,6 +4,7 @@ WORKDIR /app
 
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_DEBUG=1
 
 RUN apt-get update && pip install --upgrade pip
 
@@ -16,4 +17,4 @@ COPY model.pkl .
 
 EXPOSE 5000
 
-CMD [ "flask", "run", "--host=0.0.0.0", "--port=5000", "--debug"]
+CMD [ "flask", "run", "--host=0.0.0.0", "--port=5000"]
