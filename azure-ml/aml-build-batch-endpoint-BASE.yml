@@ -1,0 +1,52 @@
+name: BASE - Build/Publish AML Batch Endpoint
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+        description: The target deployment environment   
+    secrets:
+      AZURE_CREDENTIALS:
+        required: true
+        description: Azure credentials
+jobs:
+  build-publish:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    
+    steps:
+    - name: Grab the Branch for the Workflow
+      run: |
+          echo Github reference name $GITHUB_REF_NAME
+          echo Github reference name $GITHUB_REF
+          
+    - name: Checkout Branch
+      uses: actions/checkout@v3
+
+    - name: Login to Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Whitelist the IP Address of the Github Runner
+      run: bash whitelist-ip-add.sh ${{ vars.DEFAULTSTORAGE }} ${{ vars.SUBSCRIPTION }} ${{ vars.RESOURCEGROUP }}
+      working-directory: ./cli
+      continue-on-error: false
+        
+    - name: Setup AZ ML CLI Extension and Default Workspace
+      run: bash setup.sh ${{ vars.RESOURCEGROUP }} ${{ vars.LOCATION }} ${{ vars.WORKSPACE }}
+      working-directory: ./cli
+      continue-on-error: false
+    
+    - name: Build and Publish Batch Pipeline Endpoint
+      run: bash -x ./cli/run-job.sh pipeline.yml
+      working-directory: ./batch-endpoint
+      
+    - name: Remove IP of Github Runner from Storage Account
+      if: always()
+      run: bash whitelist-ip-remove.sh ${{ vars.DEFAULTSTORAGE }} ${{ vars.SUBSCRIPTION }} ${{ vars.RESOURCEGROUP }}
+      working-directory: ./cli
+      continue-on-error: false
+      

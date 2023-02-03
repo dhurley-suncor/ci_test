@@ -1,0 +1,21 @@
+name: DEV - Build/Publish AML Batch Endpoint
+
+on:
+
+  workflow_dispatch:
+  
+  push:
+    branches:
+      - dev
+    paths:
+      - 'batch-endpoint/src/**'
+      - 'batch-endpoint/pipeline_build.py'
+
+jobs:
+  build-publish:
+    uses: ./.github/workflows/aml-build-batch-endpoint-BASE.yml
+    with:
+      environment: dev
+      
+    secrets: 
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}

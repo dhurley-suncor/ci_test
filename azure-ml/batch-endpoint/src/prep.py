@@ -1,9 +1,11 @@
-""" Step 3 - score the model """
+""" Step 1 - prepare dataset for training trigger workflow """
 
 ####################################################################################
 # IMPORTS
 ####################################################################################
 import argparse
+import pandas as pd
+import os
 from azureml.core import Run
 
 ####################################################################################
@@ -17,8 +19,25 @@ def main(args):
 
     """
     run = Run.get_context()
-    
-    # your code here
+
+    # connect to workspace
+    ws = run.experiment.workspace
+
+    # pointer to registered dataset as defined in pipeline_build.py
+    input_dataframe = run.input_datasets['input_data'].to_pandas_dataframe()
+
+    ##### your code here
+
+    output_dataframe = input_dataframe # placeholder
+
+    if not os.path.exists(args.shared_dir):
+        os.makedirs(args.shared_dir)
+
+    # save output of this step as csv to load in next step
+    output_dataframe.to_csv(
+        os.path.join(args.shared_dir, 'prep_output.csv'), 
+        index=False
+        )
 
 ####################################################################################
 # FUNCTIONS
@@ -33,7 +52,11 @@ def parse_args():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--shared-dir", type=str, dest='shared-dir', required=True)
+    # pass input data name to the pipeline
+    parser.add_argument("--input_data", type=str, dest='input_data', required=True)
+    
+    # pass shared directory filepath for moving data between pipeline steps
+    parser.add_argument("--shared_dir", type=str, dest='shared_dir', required=True)
 
     args = parser.parse_args()
 
