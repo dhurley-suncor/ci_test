@@ -1,11 +1,11 @@
-""" Step 2 - conduct model training trigger workflow """
+""" Step 3 - score the model """
 
 ####################################################################################
 # IMPORTS
 ####################################################################################
 import argparse
-from azureml.core import Run
-# change made
+from azureml.core import Run, Model
+
 ####################################################################################
 # MAIN
 ####################################################################################
@@ -18,7 +18,16 @@ def main(args):
     """
     run = Run.get_context()
     
-    # your code here
+    # connect to workspace
+    ws = run.experiment.workspace
+
+    # load registered model from registry
+    model = Model.get(
+        model_name=args.model_name,
+        workspace=ws
+    )
+
+    ##### your code here
 
 ####################################################################################
 # FUNCTIONS
@@ -33,7 +42,9 @@ def parse_args():
 
     parser = argparse.ArgumentParser()
 
+    # pass shared directory filepath for moving data between pipeline steps
     parser.add_argument("--shared-dir", type=str, dest='shared-dir', required=True)
+    parser.add_argument("--model_name", type=str, dest='model_name', required=True)
 
     args = parser.parse_args()
 

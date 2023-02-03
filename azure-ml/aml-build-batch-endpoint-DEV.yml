@@ -8,8 +8,8 @@ on:
     branches:
       - dev
     paths:
-      - 'azure-ml/batch-endpoint/src/**'
-      - 'azure-ml/batch-endpoint/pipeline_build.py'
+      - 'batch-endpoint/src/**'
+      - 'batch-endpoint/pipeline_build.py'
 
 jobs:
   build-publish:
@@ -18,4 +18,4 @@ jobs:
       environment: dev
       
     secrets: 
-      AZURE_CREDENTIALS: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
