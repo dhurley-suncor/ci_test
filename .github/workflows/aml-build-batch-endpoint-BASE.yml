@@ -32,21 +32,21 @@ jobs:
 
     - name: Whitelist the IP Address of the Github Runner
       run: bash whitelist-ip-add.sh ${{ vars.DEFAULTSTORAGE }} ${{ vars.SUBSCRIPTION }} ${{ vars.RESOURCEGROUP }}
-      working-directory: ./cli
+      working-directory: ./azure-ml/cli
       continue-on-error: false
         
     - name: Setup AZ ML CLI Extension and Default Workspace
       run: bash setup.sh ${{ vars.RESOURCEGROUP }} ${{ vars.LOCATION }} ${{ vars.WORKSPACE }}
-      working-directory: ./cli
+      working-directory: ./azure-ml/cli
       continue-on-error: false
     
     - name: Build and Publish Batch Pipeline Endpoint
-      run: bash -x ./cli/run-job.sh pipeline.yml
-      working-directory: ./batch-endpoint
+      run: bash -x ./azure-ml/cli/run-job.sh pipeline.yml
+      working-directory: ./azure-ml/batch-endpoint
       
     - name: Remove IP of Github Runner from Storage Account
       if: always()
       run: bash whitelist-ip-remove.sh ${{ vars.DEFAULTSTORAGE }} ${{ vars.SUBSCRIPTION }} ${{ vars.RESOURCEGROUP }}
-      working-directory: ./cli
+      working-directory: ./azure-ml/cli
       continue-on-error: false
       
