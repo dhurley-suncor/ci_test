@@ -8,8 +8,8 @@ on:
     branches:
       - dev
     paths:
-      - 'batch-endpoint/src/**'
-      - 'batch-endpoint/pipeline_build.py'
+      - 'azure-ml/batch-endpoint/src/**'
+      - 'azure-ml/batch-endpoint/pipeline_build.py'
 
 jobs:
   build-publish:
