@@ -1,27 +1,21 @@
 name: DEV - Build/Publish AML Batch Endpoint
 
-# Controls when the workflow will run
 on:
 
-  # Allows you to run this workflow manually from the Actions tab. This will only work for the default branch.
   workflow_dispatch:
   
   push:
     branches:
       - dev
     paths:
-      - 'AzureML/TrainingPipeline/pipeline_build.py'
-      - 'AzureML/TrainingPipeline/src/**'
+      - 'batch-endpoint/src/**'
+      - 'batch-endpoint/pipeline_build.py'
 
-# Run the aml-build-batch-endpoint-BASE for DEV
 jobs:
-  build-publish-aml-endpoint:
+  build-publish:
     uses: ./.github/workflows/aml-build-batch-endpoint-BASE.yml
     with:
-      RESOURCEGROUP: iaasbxarmrgp003
-      LOCATION: westus2
-      WORKSPACE: iaasbxarmmlwuw2033
-      DEFAULTSTORAGE: iaasbxarmstauw2031
-      SUBSCRIPTION: SuncorABOSandbox
+      environment: dev
+      
     secrets: 
-      azure-credential: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
