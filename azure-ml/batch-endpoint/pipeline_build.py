@@ -39,8 +39,9 @@ def main(args):
     input_dataset = Dataset.get_by_name(ws, name='input-data')
 
     # add compute cluster and environment to run configuration
-    aml_compute = AmlCompute(ws, 'NAME-OF-REGISTERED-ENVIRONMENT')
-    aml_env = Environment.get(ws, 'NAME-OF-COMPUTE-CLUSTER')
+    aml_compute = AmlCompute(ws, 'cpu-cluster')
+    aml_env = Environment.get(ws, 'AML-batch-inference-env')
+
     aml_run_config.target = aml_compute
     aml_run_config.environment = aml_env
 

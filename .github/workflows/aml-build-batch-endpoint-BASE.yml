@@ -41,7 +41,7 @@ jobs:
       continue-on-error: false
     
     - name: Build and Publish Batch Pipeline Endpoint
-      run: bash -x ./azure-ml/cli/run-job.sh pipeline.yml
+      run: bash -x ../cli/run-job.sh pipeline.yml
       working-directory: ./azure-ml/batch-endpoint
       
     - name: Remove IP of Github Runner from Storage Account
