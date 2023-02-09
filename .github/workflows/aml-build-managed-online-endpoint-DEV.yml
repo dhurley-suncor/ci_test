@@ -13,7 +13,7 @@ on:
 
 jobs:
   build-publish:
-    uses: ./.github/workflows/aml-build-batch-endpoint-BASE.yml
+    uses: ./.github/workflows/aml-build-managed-online-endpoint-BASE.yml
     with:
       environment: dev
       
