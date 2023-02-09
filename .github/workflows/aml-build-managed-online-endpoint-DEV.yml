@@ -18,4 +18,4 @@ jobs:
       environment: dev
       
     secrets: 
-      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      AZURE_CREDENTIALS: ${{ secrets.SP_IAASBXARMMLWUW2033 }}
