@@ -1,0 +1,21 @@
+name: DEV - Build/Publish AML Managed Online Endpoint
+
+on:
+
+  workflow_dispatch:
+  
+  push:
+    branches:
+      - dev
+    paths:
+      - 'managed-online-endpoint/src/**'
+      - 'managed-online-endpoint/pipeline_build.py'
+
+jobs:
+  build-publish:
+    uses: ./.github/workflows/aml-build-batch-endpoint-BASE.yml
+    with:
+      environment: dev
+      
+    secrets: 
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}

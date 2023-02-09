@@ -41,6 +41,7 @@ def main(args):
     # add compute cluster and environment to run configuration
     aml_compute = AmlCompute(ws, 'cpu-cluster')
     aml_env = Environment.get(ws, 'AML-batch-inference-env')
+
     aml_run_config.target = aml_compute
     aml_run_config.environment = aml_env
 

@@ -1,34 +1,26 @@
-# Github Action - Build and Publish Batch Pipeline Endpoint AzureML
+# Github Action - Azure ML
 
 ## Description
-This sample GitHub action is to build and publish a AzureML pipeline as a batch endpoint.
+Sample Github Actions for doing ci/cd in Azure ML
 
 ## Overview
-![image](https://user-images.githubusercontent.com/83986810/213018946-89dc6e58-5bef-4104-bb53-173babf3f019.png)
-Detailed step-by-step of action workflow:
-1. checkout the associated branch
-2. login to Azure using the CLI and Service Principal credential stored in Git Secrets
-4. Whitelist IP to the AzureML default storage account
-3. Install the AzureML CLI extension and set the default workspace
-4. Trigger a build of the AzureML pipeline and publish as an endpoint
-5. Remove whitelisted IP from storage account
+##### Batch Pipeline Endpoint
+Action to assemble Azure ML pipeline and publish pipeline endpoint which can then be triggered by an orchestrator such as Azure Data Factory or Azure Synapse.
+![image](https://user-images.githubusercontent.com/83986810/217064665-ca4290d2-8851-4433-8ba7-798ba9752487.png)
+
+##### Managed Online Endpoint
+Action to create and deploy an Azure ML managed online endpoint.
 
 ## Usage
-### Pre-requisite
-- AzureML workspace
-- Service Principal used by GitHub actions to access Azure resources. Needs contributor permission on AzureML resource and blob data contribuor access to storage account associated with AzureML.
-- Existing cpu cluster in AzureML workspace with system assigned managed identity and vnet/subnet (permission and network and firewall have to be in place)
-- Existing registered environment in AzureML workspace
-- AzureML pipeline code and build script
+### Prerequisites
+- Github repository and codebase
+- Azure ML workspace
+- Service Principal used by GitHub actions to access Azure resources. Needs contributor permission on Azure ML resource and blob data contributor access to default storage account for Azure ML workspace.
+- Existing compute cluster in Azure ML workspace. If Azure ML needs to access data in a storage account behind a firewall the compute cluster needs system assigned managed identity and a vnet/subnet attached. Permission, network, firewall must be in place in the latter case. 
+- Existing registered environment in Azure ML workspace. This is required to run any jobs on an Azure ML compute cluster.
+- Code for Azure ML batch inference pipeline
 
-Below is an example of how the code for an AzureML pipeline might look. The only assumption for this action is that a `pipeline-build.py` file exists somewhere so that the `pipeline.yml` which is triggered by the action can find it.
-
-**Example AzureML pipeline code file structure:**
-- `pipeline.yml`: provided here but assumes that it is in same folder as `pipeline-build.py`
-- `pipeline-build.py`: this assembles the pipeline steps and does the publish action (see [MLOps](https://github.com/SEAdvancedAnalyticsOrg/MachineLearningOps) repository for example)
-- `src/`: contains all the python files for each step of the pipeline
-
-### Step 1: Create GitHub Actions Secret using Service Principal Credential for Azure resources
+### Step 1: Create GitHub Actions Secret using Service Principal Credential
 GitHub Actions Secret should look like below. 
 
 ```
