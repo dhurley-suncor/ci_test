@@ -1,9 +1,9 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 type: pipeline
 
-description: Build and publish batch pipeline endpoint
-display_name: batch-pipeline-build-publish-endpoint
-experiment_name: batch-pipeline-build-publish-endpoint
+description: Create and deploy managed online endpoint
+display_name: create-deploy-managed-online-endpoint
+experiment_name: create-deploy-managed-online-endpoint
 
 jobs:
   pipeline_build:
@@ -16,9 +16,9 @@ jobs:
         path: ./config.json
         mode: download
     # name of a registered environment in aml workspace you want to publish endpoint at
-    environment: azureml:NAME-OF-REGISTERED-ENVIRONMENT@latest
+    environment: azureml:AML-batch-inference-env@latest
     # name of a compute cluster in aml workspace you want to publish endpoint at
-    compute: azureml:NAME-OF-COMPUTE-CLUSTER
+    compute: azureml:cpu-cluster
     command: >-
       python pipeline_build.py
       --config_file ${{ inputs.config_file }}
