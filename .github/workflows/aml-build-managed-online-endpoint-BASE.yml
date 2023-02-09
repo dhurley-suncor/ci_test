@@ -41,7 +41,7 @@ jobs:
       continue-on-error: false
     
     - name: Build and Publish Managed Online Endpoint
-      run: bash -x ./cli/run-job.sh pipeline.yml
+      run: bash -x ./azure-ml/cli/run-job.sh pipeline.yml
       working-directory: ./azure-ml/managed-online-endpoint
       
     - name: Remove IP of Github Runner from Storage Account
